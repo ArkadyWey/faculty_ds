@@ -1,0 +1,9 @@
+numpy
+pandas
+matplotlib
+sklearn
+plotly
+nltk
+spacy
+umap-learn
+hdbscan
