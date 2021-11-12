@@ -1,5 +1,5 @@
 import dash
-import dash_html_components as html
+from dash import html
 
 FACULTY_LOGO = "https://faculty.ai/wp-content/uploads/2019/01/logo-black.svg"
 
