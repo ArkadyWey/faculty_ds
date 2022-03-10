@@ -14,7 +14,7 @@ app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 controls = dbc.Card(
     [
-        dbc.FormGroup(
+        dbc.Col(
             [
                 dbc.Label("X variable"),
                 dcc.Dropdown(
@@ -24,9 +24,10 @@ controls = dbc.Card(
                     ],
                     value="sepal length (cm)",
                 ),
-            ]
+            ],
+            style={"margin-bottom": "20px"},
         ),
-        dbc.FormGroup(
+        dbc.Col(
             [
                 dbc.Label("Y variable"),
                 dcc.Dropdown(
@@ -36,9 +37,10 @@ controls = dbc.Card(
                     ],
                     value="sepal width (cm)",
                 ),
-            ]
+            ],
+            style={"margin-bottom": "20px"},
         ),
-        dbc.FormGroup(
+        dbc.Col(
             [
                 dbc.Label("Cluster count"),
                 dbc.Input(id="cluster-count", type="number", value=3),
