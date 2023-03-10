@@ -1,0 +1,38 @@
+import plotly.graph_objects as go
+import dash
+from dash import Dash, dcc, html, Input, Output
+from sklearn.datasets import load_iris
+import pandas as pd
+
+# Get sample dataset
+iris = load_iris()
+iris_df=pd.DataFrame(iris.data)
+iris_df['class']=iris.target
+iris_df.columns=['sepal_len', 'sepal_wid', 'petal_len', 'petal_wid', 'class']
+
+app = dash.Dash()
+
+app.layout = html.Div(children=[
+    html.H1(children='Title'),
+    dcc.Dropdown() 
+    # Change the dropdown to take the available options in set as an input
+    # ideally make it dynamic to the values in the df but you can hardcode it
+    # Link to the callback
+
+    dcc.Graph()
+    # Link to the callback
+])
+
+
+# Convert the graph code below to work as a function taking class as an input
+# 1. subset the dataframe using class
+# 2. Modify it with the app.callback decorator
+fig = go.Figure(
+    data=[go.Scatter(x=iris_df["sepal_wid"], y=iris_df["petal_wid"], mode="markers")],
+    layout=go.Layout(title=go.layout.Title(text="My first plotly graph")),
+)
+
+if __name__ == "__main__":
+    # remember to run on port 8888 on Faculty platform
+    # and set debug=True for hot reloading
+    app.run_server(port=8888, debug=True)
