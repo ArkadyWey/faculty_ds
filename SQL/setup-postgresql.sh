@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 sudo apt update -y
 sudo apt install postgresql -y
 sudo service postgresql start
