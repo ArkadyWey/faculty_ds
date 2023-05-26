@@ -1,8 +1,9 @@
-#! /bin/bash
+#!/bin/bash
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get install postgresql-10 -y
+set -e
+
+sudo apt update -y
+sudo apt install postgresql -y
 sudo service postgresql start
 sudo -u postgres psql -c "create user faculty"
 sudo -u postgres psql -c "create schema input"
