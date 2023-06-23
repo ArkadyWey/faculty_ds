@@ -1,4 +1,4 @@
-import plotly.graph_objects as go
+import plotly.express as px
 import dash
 from dash import Dash, dcc, html, Input, Output
 from sklearn.datasets import load_iris
@@ -15,30 +15,26 @@ app = dash.Dash()
 
 app.layout = html.Div(
     children=[
-        html.H1(children="Title"),
+        html.H1(children="My first interactive dash app"),
         dcc.Dropdown(
             id="dropdown",
             options=[
                 {"label": class_val, "value": class_val}
                 for class_val in set(iris_df["class"])
             ],
-            value="Iris Class",
+            value=0, # Default value
         ),
         dcc.Graph(id="iris-graph"),
     ]
 )
 
-
 @app.callback(
     Output(component_id="iris-graph", component_property="figure"),
     Input(component_id="dropdown", component_property="value"),
 )
-def make_graph(iris_class: str):
+def make_graph(iris_class):
     df = iris_df[iris_df["class"] == iris_class]
-
-    data = [go.Scatter(x=df["sepal_wid"], y=df["petal_wid"], mode="markers")]
-    layout = go.Layout(title=go.layout.Title(text="My first plotly graph"))
-    iris_scatter_figure = go.Figure(data=data, layout=layout)
+    iris_scatter_figure = px.scatter(x=df["sepal_wid"], y=df["petal_wid"], title="My first interactive Dash plot")
     return iris_scatter_figure
 
 
